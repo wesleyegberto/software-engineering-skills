@@ -42,6 +42,12 @@ To install as a plugin, run the Claude Code command:
 
 # Install a specific plugin
 /plugin install programming-skills@software-engineering-skills
+/plugin install docs@software-engineering-skills
+/plugin install java@software-engineering-skills
+/plugin install node@software-engineering-skills
+/plugin install python@software-engineering-skills
+/plugin install frontend@software-engineering-skills
+/plugin install devops@software-engineering-skills
 ```
 
 ## Plugins
