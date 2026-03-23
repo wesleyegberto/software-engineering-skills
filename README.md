@@ -61,7 +61,7 @@ Foundation plugin with general software engineering knowledge. All other plugins
 | Category | Items |
 |----------|-------|
 | Agents | `code-explorer`, `code-reviewer`, `debugger`, `demonstrate-understanding`, `dx-optimizer`, `error-detective`, `legacy-modernizer`, `principal-software-engineer`, `software-engineer`, `tech-debt-remediation-plan`, `test-automator` |
-| Commands | `/code`, `/code-review`, `/debug`, `/git` |
+| Commands | `/code`, `/code-review`, `/debug`, `/git`, '/test` |
 | Skills | `anti-duplication`, `api-designer`, `breaking-change-detector`, `clean-architecture`, `clean-code`, `code-patterns`, `data-quality-frameworks`, `debugging-strategies`, `domain-driven-design`, `error-handling-patterns`, `git-advanced-workflows`, `git-commit`, `git-guardrails`, `multi-reviewer-patterns`, `parallel-debugging`, `pragmatic-programmer`, `programming`, `refactoring-patterns`, `software-design-complexity`, `software-design-principles`, `tests-expert` |
 
 ---
