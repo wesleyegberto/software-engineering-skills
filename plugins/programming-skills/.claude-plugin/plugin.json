@@ -1,0 +1,22 @@
+{
+  "name": "programming-skills",
+  "description": "Collection of agents, commands and skills for software development in any language",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "software-engineering",
+  "tags": [
+    "clean-code",
+    "clean-architecture",
+    "design-patterns",
+    "refactoring",
+    "testing",
+    "debugging",
+    "git",
+    "api-design",
+    "domain-driven-design",
+    "code-review"
+  ],
+  "author": {
+    "name": "Wesley Egberto"
+  }
+}

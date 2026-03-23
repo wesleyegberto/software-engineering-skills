@@ -1,0 +1,20 @@
+{
+  "name": "java",
+  "description": "Collection of agents, commands and skills for software development in Java with Spring Boot",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "backend",
+  "tags": [
+    "java",
+    "spring-boot",
+    "jpa",
+    "rest-api",
+    "security",
+    "architecture",
+    "code-review",
+    "coding-standards"
+  ],
+  "author": {
+    "name": "Wesley Egberto"
+  }
+}

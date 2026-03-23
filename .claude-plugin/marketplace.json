@@ -1,0 +1,41 @@
+{
+  "name": "software-engineering-skills",
+  "owner": { "name": "Wesley Egberto" },
+  "plugins": [
+    {
+      "name": "devops",
+      "description": "Collection of agents, commands and skills for DevOps",
+      "source": "./plugins/devops/"
+    },
+    {
+      "name": "docs",
+      "description": "Collection of agents, commands and skills for documentation",
+      "source": "./plugins/docs/"
+    },
+    {
+      "name": "frontend",
+      "description": "Collection of agents, commands and skills for documentation",
+      "source": "./plugins/frontend/"
+    },
+    {
+      "name": "java",
+      "description": "Collection of agents, commands and skills for software development in Java with Spring Boot",
+      "source": "./plugins/java/"
+    },
+    {
+      "name": "node",
+      "description": "Collection of agents, commands and skills for software development in Node",
+      "source": "./plugins/node/"
+    },
+    {
+      "name": "programming-skills",
+      "description": "Collection of agents, commands and skills for software development in any language",
+      "source": "./plugins/programming-skills/"
+    },
+    {
+      "name": "python",
+      "description": "Collection of agents, commands and skills for software development in Python",
+      "source": "./plugins/python/"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "description": "Collection of agents, commands and skills for frontend development with Angular and React",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "frontend",
+  "tags": [
+    "angular",
+    "react",
+    "nextjs",
+    "react-native",
+    "nestjs",
+    "tailwind",
+    "ux",
+    "accessibility",
+    "wcag",
+    "e2e-testing",
+    "design-system"
+  ],
+  "author": {
+    "name": "Wesley Egberto"
+  }
+}

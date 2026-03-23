@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "description": "Collection of agents, commands and skills for documentation",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "documentation",
+  "tags": [
+    "documentation",
+    "code-docs",
+    "technical-writing",
+    "readme",
+    "markdown"
+  ],
+  "author": {
+    "name": "Wesley Egberto"
+  }
+}

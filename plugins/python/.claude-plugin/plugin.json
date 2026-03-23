@@ -1,0 +1,22 @@
+{
+  "name": "python",
+  "description": "Collection of agents, commands and skills for software development in Python",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "backend",
+  "tags": [
+    "python",
+    "async",
+    "testing",
+    "design-patterns",
+    "performance",
+    "observability",
+    "packaging",
+    "type-safety",
+    "error-handling",
+    "uv"
+  ],
+  "author": {
+    "name": "Wesley Egberto"
+  }
+}

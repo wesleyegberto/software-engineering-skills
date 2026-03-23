@@ -1,0 +1,25 @@
+{
+  "name": "devops",
+  "description": "Collection of agents, commands and skills for DevOps",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "devops",
+  "tags": [
+    "kubernetes",
+    "terraform",
+    "ci-cd",
+    "github-actions",
+    "gitlab-ci",
+    "helm",
+    "docker",
+    "bash",
+    "cloud",
+    "sre",
+    "secrets-management",
+    "istio",
+    "multi-cloud"
+  ],
+  "author": {
+    "name": "Wesley Egberto"
+  }
+}
