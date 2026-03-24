@@ -34,20 +34,39 @@ claude --plugin-dir ./software-engineering-skills/plugins/<plugin-name>
 To install as a plugin, run the Claude Code command:
 
 ```
-# Remote (from GitHub)
-/plugin marketplace add https://github.com/wesleyegberto/software-engineering-skills.git
+# Remote
+claude plugin marketplace add https://github.com/wesleyegberto/software-engineering-skills.git
 
 # Local path
-/plugin marketplace add ./software-engineering-skills
+git clone https://github.com/wesleyegberto/software-engineering-skills.git
+claude plugin marketplace add ./software-engineering-skills
 
 # Install a specific plugin
-/plugin install programming-skills@software-engineering-skills
-/plugin install docs@software-engineering-skills
-/plugin install java@software-engineering-skills
-/plugin install node@software-engineering-skills
-/plugin install python@software-engineering-skills
-/plugin install frontend@software-engineering-skills
-/plugin install devops@software-engineering-skills
+claude plugin install programming-skills@software-engineering-skills
+claude plugin install docs@software-engineering-skills
+claude plugin install java@software-engineering-skills
+claude plugin install node@software-engineering-skills
+claude plugin install python@software-engineering-skills
+claude plugin install frontend@software-engineering-skills
+claude plugin install devops@software-engineering-skills
+```
+
+### Gemini
+
+To install just link the extension with the folder:
+
+```bash
+# Local path
+git clone https://github.com/wesleyegberto/software-engineering-skills.git
+
+# Install extensions
+gemini extensions link ./software-engineering-skills/plugins/programming-skills/
+gemini extensions link ./software-engineering-skills/plugins/devops/
+gemini extensions link ./software-engineering-skills/plugins/docs/
+gemini extensions link ./software-engineering-skills/plugins/frontend/
+gemini extensions link ./software-engineering-skills/plugins/java/
+gemini extensions link ./software-engineering-skills/plugins/node/
+gemini extensions link ./software-engineering-skills/plugins/python/
 ```
 
 ## Plugins
@@ -62,7 +81,7 @@ Foundation plugin with general software engineering knowledge. All other plugins
 |----------|-------|
 | Agents | `code-explorer`, `code-reviewer`, `debugger`, `demonstrate-understanding`, `dx-optimizer`, `error-detective`, `legacy-modernizer`, `principal-software-engineer`, `software-engineer`, `tech-debt-remediation-plan`, `test-automator` |
 | Commands | `/code`, `/code-review`, `/debug`, `/git`, '/test` |
-| Skills | `anti-duplication`, `api-designer`, `breaking-change-detector`, `clean-architecture`, `clean-code`, `code-patterns`, `data-quality-frameworks`, `debugging-strategies`, `domain-driven-design`, `error-handling-patterns`, `git-advanced-workflows`, `git-commit`, `git-guardrails`, `multi-reviewer-patterns`, `parallel-debugging`, `pragmatic-programmer`, `programming`, `refactoring-patterns`, `software-design-complexity`, `software-design-principles`, `tests-expert` |
+| Skills | `anti-duplication`, `api-designer`, `breaking-change-detector`, `clean-architecture`, `clean-code`, `code-patterns`, `debugging-strategies`, `domain-driven-design`, `error-handling-patterns`, `git-advanced-workflows`, `git-commit`, `git-guardrails`, `multi-reviewer-patterns`, `parallel-debugging`, `pragmatic-programmer`, `programming`, `refactoring-patterns`, `software-design-complexity`, `software-design-principles`, `tests-expert` |
 
 ---
 
@@ -76,7 +95,7 @@ Agents, commands and skills for Java development with Spring Boot.
 |----------|-------|
 | Agents | `java-architect`, `java-build-resolver`, `java-mcp-developer`, `java-reviewer`, `java-spring-boot` |
 | Commands | `/create-project`, `/docs`, `/junit`, `/mcp-server-generator`, `/refactoring-extract-method`, `/refactoring-remove-parameter`, `/spring-boot` |
-| Skills | `java-architect`, `java-code-review`, `java-coding-standards`, `java-jpa-patterns`, `java-performance`, `java-spring-boot-expert`, `java-spring-boot-security`, `java-spring-boot-testing`, `java-spring-boot-verification-loop` |
+| Skills | `java-architect`, `java-code-review`, `java-coding-standards`, `java-jpa-patterns`, `java-performance`, `java-spring-boot-expert`, `java-spring-boot-security`, `java-spring-boot-testing`, `java-spring-boot-verification-loop`, `java-feature-development` |
 
 ---
 
@@ -104,7 +123,7 @@ Agents, commands and skills for Node.js/JavaScript/TypeScript development.
 |----------|-------|
 | Agents | `javascript-developer`, `typescript-developer` |
 | Commands | `/mcp-server-generator`, `/setup-pre-commit` |
-| Skills | `auth-implementation-patterns`, `fullstack-guardian`, `javascript-coding-standards`, `javascript-expert`, `javascript-modern-patterns`, `javascript-testing-patterns`, `node-tests`, `nodejs-backend-patterns`, `playwright-expert`, `typescript-advanced-types` |
+| Skills | `auth-implementation-patterns`, `fullstack-guardian`, `javascript-coding-standards`, `javascript-expert`, `javascript-modern-patterns`, `javascript-testing-patterns`, `node-tests`, `nodejs-backend-patterns`, `playwright-expert`, `typescript-advanced-types`, `node-feature-development` |
 
 ---
 
@@ -118,7 +137,7 @@ Agents, commands and skills for frontend development (React, Angular, Next.js, m
 |----------|-------|
 | Agents | `angular-developer`, `frontend-developer`, `ios-developer`, `mobile-developer`, `nextjs-developer`, `react-developer`, `ui-ux-designer`, `ui-visual-validator` |
 | Commands | `/accessibility-audit`, `/react-component-scaffold` |
-| Skills | `angular-architect`, `angular-expert`, `angular-new-app`, `chrome-devtools`, `e2e-testing-patterns`, `frontend-design`, `frontend-design-everyday-things`, `frontend-lean-ux`, `frontend-microinteractions`, `frontend-refactoring-ui`, `frontend-screen-reader-testing`, `frontend-top-design`, `frontend-ux-heuristics`, `nestjs-expert`, `nextjs-app-router-patterns`, `nextjs-expert`, `react-expert`, `react-native-architecture`, `react-native-expert`, `react-patterns`, `react-state-management`, `tailwind-design-system`, `wcag-audit-patterns` |
+| Skills | `angular-architect`, `angular-expert`, `angular-new-app`, `chrome-devtools`, `e2e-testing-patterns`, `frontend-design`, `frontend-design-everyday-things`, `frontend-lean-ux`, `frontend-microinteractions`, `frontend-refactoring-ui`, `frontend-screen-reader-testing`, `frontend-top-design`, `frontend-ux-heuristics`, `nestjs-expert`, `nextjs-app-router-patterns`, `nextjs-expert`, `react-expert`, `react-native-architecture`, `react-native-expert`, `react-patterns`, `react-state-management`, `tailwind-design-system`, `wcag-audit-patterns`, `react-feature-development` |
 
 ---
 
