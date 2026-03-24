@@ -1,0 +1,21 @@
+{
+  "name": "software-engineering-node-skills",
+  "version": "1.0.0",
+  "author": "Wesley Egberto",
+  "repository": "https://github.com/wesleyegberto/software-engineering-skills",
+  "categories": [
+    "node",
+    "nodejs",
+    "javascript",
+    "typescript",
+    "express",
+    "auth",
+    "testing",
+    "playwright",
+    "fullstack",
+    "backend-patterns"
+  ],
+  "languages": [
+    "node"
+  ]
+}

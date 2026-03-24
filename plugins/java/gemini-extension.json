@@ -1,0 +1,19 @@
+{
+  "name": "software-engineering-java-skills",
+  "version": "1.0.0",
+  "author": "Wesley Egberto",
+  "repository": "https://github.com/wesleyegberto/software-engineering-skills",
+  "categories": [
+    "java",
+    "spring-boot",
+    "jpa",
+    "rest-api",
+    "security",
+    "architecture",
+    "code-review",
+    "coding-standards"
+  ],
+  "languages": [
+    "java"
+  ]
+}

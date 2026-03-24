@@ -1,0 +1,21 @@
+{
+  "name": "software-engineering-python-skills",
+  "version": "1.0.0",
+  "author": "Wesley Egberto",
+  "repository": "https://github.com/wesleyegberto/software-engineering-skills",
+  "categories": [
+    "python",
+    "async",
+    "testing",
+    "design-patterns",
+    "performance",
+    "observability",
+    "packaging",
+    "type-safety",
+    "error-handling",
+    "uv"
+  ],
+  "languages": [
+    "python"
+  ]
+}

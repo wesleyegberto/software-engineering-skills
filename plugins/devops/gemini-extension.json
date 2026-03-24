@@ -1,10 +1,9 @@
 {
-  "name": "devops",
-  "description": "Collection of agents, commands and skills for DevOps",
+  "name": "software-engineering-devops-skills",
   "version": "1.0.0",
-  "license": "MIT",
-  "category": "devops",
-  "tags": [
+  "author": "Wesley Egberto",
+  "repository": "https://github.com/wesleyegberto/software-engineering-skills",
+  "categories": [
     "devops",
     "kubernetes",
     "terraform",
@@ -20,7 +19,7 @@
     "istio",
     "multi-cloud"
   ],
-  "author": {
-    "name": "Wesley Egberto"
-  }
+  "languages": [
+    "devops"
+  ]
 }

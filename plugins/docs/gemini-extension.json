@@ -1,0 +1,16 @@
+{
+  "name": "software-engineering-docs-skills",
+  "version": "1.0.0",
+  "author": "Wesley Egberto",
+  "repository": "https://github.com/wesleyegberto/software-engineering-skills",
+  "categories": [
+    "documentation",
+    "code-docs",
+    "technical-writing",
+    "readme",
+    "markdown"
+  ],
+  "languages": [
+    "docs"
+  ]
+}

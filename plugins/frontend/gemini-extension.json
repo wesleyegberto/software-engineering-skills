@@ -1,0 +1,22 @@
+{
+  "name": "software-engineering-frontend-skills",
+  "version": "1.0.0",
+  "author": "Wesley Egberto",
+  "repository": "https://github.com/wesleyegberto/software-engineering-skills",
+  "categories": [
+    "angular",
+    "react",
+    "nextjs",
+    "react-native",
+    "nestjs",
+    "tailwind",
+    "ux",
+    "accessibility",
+    "wcag",
+    "e2e-testing",
+    "design-system"
+  ],
+  "languages": [
+    "frontend"
+  ]
+}
