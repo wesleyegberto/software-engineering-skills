@@ -10,7 +10,7 @@ metadata:
   role: orchestrator
   scope: implementation
   output-format: code + summary
-  related-skills: nodejs-backend-patterns, javascript-expert, typescript-advanced-types, auth-implementation-patterns, javascript-testing-patterns
+  related-skills: nodejs-backend-patterns, javascript-expert, typescript-advanced-types, auth-implementation-patterns, javascript-testing-patterns, terminal-monitor
 ---
 
 # Node.js Backend Feature Development Orchestrator
@@ -35,6 +35,7 @@ This skill will coordinate a team of specialist subagents to implement your feat
   🔎 Code Reviewer        — reviews for correctness, security, performance, and consistency
 
 Agents run in parallel where possible to save time.
+Each agent will open in a dedicated terminal pane (tmux or iTerm2) so you can follow progress in real time.
 
 Shall I start the team and begin the feature development workflow?
 1. Yes — let's go
@@ -43,6 +44,24 @@ Shall I start the team and begin the feature development workflow?
 
 Use `AskUserQuestion` to present this message and wait for confirmation before continuing.
 If the user selects option 2, stop and let them proceed on their own.
+
+---
+
+## Terminal Monitoring
+
+Each agent step MUST open a dedicated terminal pane before launching so the user can follow progress in real time.
+
+use skill `programming-skills:terminal-monitor` — handles detection (tmux / iTerm2 / none) and pane opening. Call it once per agent with the parameters below.
+
+### Pane parameters per step
+
+| Step | `mode` | `label` | `pane-name` | `output-file` |
+|------|--------|---------|------------|---------------|
+| 2 – Code Explorer | `subagent` | `🔍 Code Explorer` | `🔍 explorer` | `.node-dev/02-codebase-analysis.md` |
+| 3 – Backend Architect | `subagent` | `🏗️ Backend Architect` | `🏗️ architect` | `.node-dev/03-architecture.md` |
+| 4 – Node.js Developer | `subagent` | `🟢 Node.js Developer` | `🟢 node` | `.node-dev/04-implementation.md` |
+| 5a – Test Automator | `subagent` | `🧪 Test Automator` | `🧪 tests` | `.node-dev/05-quality.md` |
+| 5b – Code Reviewer | `subagent` | `🔎 Code Reviewer` | `🔎 reviewer` | `.node-dev/05-quality.md` |
 
 ---
 
@@ -160,7 +179,11 @@ Update `state.json`: set `current_step` to 2, add `"01-requirements.md"` to `fil
 
 ### Step 2: Codebase Exploration
 
-Read `.node-dev/01-requirements.md`. Launch the codebase explorer:
+Read `.node-dev/01-requirements.md`.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🔍 Code Explorer`, `pane-name: 🔍 explorer`, `output-file: .node-dev/02-codebase-analysis.md`
+
+Launch the codebase explorer:
 
 ```
 Agent:
@@ -225,6 +248,8 @@ Update `state.json`: set `current_step` to 3, add step 2 to `completed_steps`.
 ### Step 3: Backend Architecture Design
 
 Read `.node-dev/01-requirements.md` and `.node-dev/02-codebase-analysis.md`.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🏗️ Backend Architect`, `pane-name: 🏗️ architect`, `output-file: .node-dev/03-architecture.md`
 
 Launch the architecture agent:
 
@@ -329,6 +354,8 @@ If option 3, update `state.json` status to `"paused"` and stop.
 Read `.node-dev/01-requirements.md`, `.node-dev/02-codebase-analysis.md`, and `.node-dev/03-architecture.md`.
 
 Use `EnterWorktree` to create an isolated development branch before implementation begins.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🟢 Node.js Developer`, `pane-name: 🟢 node`, `output-file: .node-dev/04-implementation.md`
 
 Then launch the implementation agent — use `node:typescript-developer` if the project uses TypeScript, or `node:javascript-developer` if it uses plain JavaScript (check the codebase analysis):
 
@@ -442,6 +469,9 @@ Do NOT proceed to Phase 5 until the user selects option 1.
 ### Step 5: Parallel Testing and Code Review
 
 Read `.node-dev/01-requirements.md`, `.node-dev/03-architecture.md`, and `.node-dev/04-implementation.md`.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🧪 Test Automator`, `pane-name: 🧪 tests`, `output-file: .node-dev/05-quality.md`
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🔎 Code Reviewer`, `pane-name: 🔎 reviewer`, `output-file: .node-dev/05-quality.md`
 
 Launch TWO agents in parallel in a single response:
 
@@ -758,18 +788,41 @@ Update `state.json`:
 }
 ```
 
+#### Move artifacts to feature docs folder
+
+Derive the feature folder name from `$FEATURE`: lowercase, spaces replaced by hyphens, special characters removed (e.g., `"User Authentication"` → `user-authentication`). Call this `$FEATURE_SLUG`.
+
+Create the destination directory and move all generated files:
+
+```bash
+mkdir -p docs/features/$FEATURE_SLUG
+mv .node-dev/01-requirements.md      docs/features/$FEATURE_SLUG/
+mv .node-dev/02-codebase-analysis.md docs/features/$FEATURE_SLUG/
+mv .node-dev/03-architecture.md      docs/features/$FEATURE_SLUG/
+mv .node-dev/04-implementation.md    docs/features/$FEATURE_SLUG/
+mv .node-dev/05-quality.md           docs/features/$FEATURE_SLUG/
+mv .node-dev/06-summary.md           docs/features/$FEATURE_SLUG/
+mv .node-dev/state.json              docs/features/$FEATURE_SLUG/
+```
+
+After moving, remove the now-empty `.node-dev/` directory:
+
+```bash
+rmdir .node-dev
+```
+
 Present the final message:
 
 ```
 Node.js backend feature development complete: $FEATURE
 
-Artifacts:
-- .node-dev/01-requirements.md      — Requirements
-- .node-dev/02-codebase-analysis.md — Codebase exploration
-- .node-dev/03-architecture.md      — Backend architecture design
-- .node-dev/04-implementation.md    — Implementation summary
-- .node-dev/05-quality.md           — Tests & code review
-- .node-dev/06-summary.md           — Final delivery summary
+Artifacts saved to docs/features/$FEATURE_SLUG/:
+- 01-requirements.md      — Requirements
+- 02-codebase-analysis.md — Codebase exploration
+- 03-architecture.md      — Backend architecture design
+- 04-implementation.md    — Implementation summary
+- 05-quality.md           — Tests & code review
+- 06-summary.md           — Final delivery summary
 
 Next steps (if any):
 [List any deferred items from points of attention]

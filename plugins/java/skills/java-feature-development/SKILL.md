@@ -10,7 +10,7 @@ metadata:
   role: orchestrator
   scope: implementation
   output-format: code + summary
-  related-skills: java-spring-boot-expert, java-architect, java-spring-boot-testing, java-spring-boot-security, java-jpa-patterns
+  related-skills: java-spring-boot-expert, java-architect, java-spring-boot-testing, java-spring-boot-security, java-jpa-patterns, terminal-monitor
 ---
 
 # Java Spring Boot Feature Development Orchestrator
@@ -35,6 +35,7 @@ This skill will coordinate a team of specialist subagents to implement your feat
   🔎 Code Reviewer        — reviews for correctness, Spring patterns, security, and performance
 
 Agents run in parallel where possible to save time.
+Each agent will open in a dedicated terminal pane (tmux or iTerm2) so you can follow progress in real time.
 
 Shall I start the team and begin the feature development workflow?
 1. Yes — let's go
@@ -43,6 +44,24 @@ Shall I start the team and begin the feature development workflow?
 
 Use `AskUserQuestion` to present this message and wait for confirmation before continuing.
 If the user selects option 2, stop and let them proceed on their own.
+
+---
+
+## Terminal Monitoring
+
+Each agent step MUST open a dedicated terminal pane before launching so the user can follow progress in real time.
+
+use skill `programming-skills:terminal-monitor` — handles detection (tmux / iTerm2 / none) and pane opening. Call it once per agent with the parameters below.
+
+### Pane parameters per step
+
+| Step | `mode` | `label` | `pane-name` | `output-file` |
+|------|--------|---------|------------|---------------|
+| 2 – Code Explorer | `subagent` | `🔍 Code Explorer` | `🔍 explorer` | `.java-dev/02-codebase-analysis.md` |
+| 3 – Backend Architect | `subagent` | `🏗️ Backend Architect` | `🏗️ architect` | `.java-dev/03-architecture.md` |
+| 4 – Spring Boot Engineer | `subagent` | `☕ Spring Boot Engineer` | `☕ engineer` | `.java-dev/04-implementation.md` |
+| 5a – Test Automator | `subagent` | `🧪 Test Automator` | `🧪 tests` | `.java-dev/05-quality.md` |
+| 5b – Code Reviewer | `subagent` | `🔎 Code Reviewer` | `🔎 reviewer` | `.java-dev/05-quality.md` |
 
 ---
 
@@ -160,7 +179,11 @@ Update `state.json`: set `current_step` to 2, add `"01-requirements.md"` to `fil
 
 ### Step 2: Codebase Exploration
 
-Read `.java-dev/01-requirements.md`. Launch the codebase explorer:
+Read `.java-dev/01-requirements.md`.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🔍 Code Explorer`, `pane-name: 🔍 explorer`, `output-file: .java-dev/02-codebase-analysis.md`
+
+Launch the codebase explorer:
 
 ```
 Agent:
@@ -222,6 +245,8 @@ Update `state.json`: set `current_step` to 3, add step 2 to `completed_steps`.
 ### Step 3: Backend Architecture Design
 
 Read `.java-dev/01-requirements.md` and `.java-dev/02-codebase-analysis.md`.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🏗️ Backend Architect`, `pane-name: 🏗️ architect`, `output-file: .java-dev/03-architecture.md`
 
 Launch the architecture agent:
 
@@ -322,6 +347,8 @@ If option 3, update `state.json` status to `"paused"` and stop.
 Read `.java-dev/01-requirements.md`, `.java-dev/02-codebase-analysis.md`, and `.java-dev/03-architecture.md`.
 
 Use `EnterWorktree` to create an isolated development branch before implementation begins.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: ☕ Spring Boot Engineer`, `pane-name: ☕ engineer`, `output-file: .java-dev/04-implementation.md`
 
 Then launch the Spring Boot implementation agent:
 
@@ -437,6 +464,9 @@ Do NOT proceed to Phase 5 until the user selects option 1.
 ### Step 5: Parallel Testing and Code Review
 
 Read `.java-dev/01-requirements.md`, `.java-dev/03-architecture.md`, and `.java-dev/04-implementation.md`.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🧪 Test Automator`, `pane-name: 🧪 tests`, `output-file: .java-dev/05-quality.md`
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🔎 Code Reviewer`, `pane-name: 🔎 reviewer`, `output-file: .java-dev/05-quality.md`
 
 Launch TWO agents in parallel in a single response:
 
@@ -742,18 +772,41 @@ Update `state.json`:
 }
 ```
 
+#### Move artifacts to feature docs folder
+
+Derive the feature folder name from `$FEATURE`: lowercase, spaces replaced by hyphens, special characters removed (e.g., `"User Authentication"` → `user-authentication`). Call this `$FEATURE_SLUG`.
+
+Create the destination directory and move all generated files:
+
+```bash
+mkdir -p docs/features/$FEATURE_SLUG
+mv .java-dev/01-requirements.md      docs/features/$FEATURE_SLUG/
+mv .java-dev/02-codebase-analysis.md docs/features/$FEATURE_SLUG/
+mv .java-dev/03-architecture.md      docs/features/$FEATURE_SLUG/
+mv .java-dev/04-implementation.md    docs/features/$FEATURE_SLUG/
+mv .java-dev/05-quality.md           docs/features/$FEATURE_SLUG/
+mv .java-dev/06-summary.md           docs/features/$FEATURE_SLUG/
+mv .java-dev/state.json              docs/features/$FEATURE_SLUG/
+```
+
+After moving, remove the now-empty `.java-dev/` directory:
+
+```bash
+rmdir .java-dev
+```
+
 Present the final message:
 
 ```
 Java Spring Boot feature development complete: $FEATURE
 
-Artifacts:
-- .java-dev/01-requirements.md      — Requirements
-- .java-dev/02-codebase-analysis.md — Codebase exploration
-- .java-dev/03-architecture.md      — Backend architecture design
-- .java-dev/04-implementation.md    — Implementation summary
-- .java-dev/05-quality.md           — Tests & code review
-- .java-dev/06-summary.md           — Final delivery summary
+Artifacts saved to docs/features/$FEATURE_SLUG/:
+- 01-requirements.md      — Requirements
+- 02-codebase-analysis.md — Codebase exploration
+- 03-architecture.md      — Backend architecture design
+- 04-implementation.md    — Implementation summary
+- 05-quality.md           — Tests & code review
+- 06-summary.md           — Final delivery summary
 
 Next steps (if any):
 [List any deferred items from points of attention]

@@ -10,7 +10,7 @@ metadata:
   role: orchestrator
   scope: implementation
   output-format: code + summary
-  related-skills: react-expert, react-patterns, react-state-management, frontend-design, e2e-testing-patterns
+  related-skills: react-expert, react-patterns, react-state-management, frontend-design, e2e-testing-patterns, terminal-monitor
 ---
 
 # React Feature Development Orchestrator
@@ -35,6 +35,7 @@ This skill will coordinate a team of specialist subagents to implement your feat
   🔎 Code Reviewer      — reviews for correctness, performance, security, and consistency
 
 Agents run in parallel where possible to save time.
+Each agent will open in a dedicated terminal pane (tmux or iTerm2) so you can follow progress in real time.
 
 Shall I start the team and begin the feature development workflow?
 1. Yes — let's go
@@ -43,6 +44,24 @@ Shall I start the team and begin the feature development workflow?
 
 Use `AskUserQuestion` to present this message and wait for confirmation before continuing.
 If the user selects option 2, stop and let them proceed on their own.
+
+---
+
+## Terminal Monitoring
+
+Each agent step MUST open a dedicated terminal pane before launching so the user can follow progress in real time.
+
+use skill `programming-skills:terminal-monitor` — handles detection (tmux / iTerm2 / none) and pane opening. Call it once per agent with the parameters below.
+
+### Pane parameters per step
+
+| Step | `mode` | `label` | `pane-name` | `output-file` |
+|------|--------|---------|------------|---------------|
+| 2a – Code Explorer | `subagent` | `🔍 Code Explorer` | `🔍 explorer` | `.react-dev/02-analysis.md` |
+| 2b – UX Designer | `subagent` | `🎨 UX Designer` | `🎨 ux` | `.react-dev/02-analysis.md` |
+| 3 – React Developer | `subagent` | `⚛️ React Developer` | `⚛️ react` | `.react-dev/03-implementation.md` |
+| 4a – Test Automator | `subagent` | `🧪 Test Automator` | `🧪 tests` | `.react-dev/04-quality.md` |
+| 4b – Code Reviewer | `subagent` | `🔎 Code Reviewer` | `🔎 reviewer` | `.react-dev/04-quality.md` |
 
 ---
 
@@ -153,7 +172,10 @@ Update `state.json`: set `current_step` to 2, add `"01-requirements.md"` to `fil
 
 ### Step 2: Parallel Analysis — Codebase + UX Design
 
-Read `.react-dev/01-requirements.md`. Then launch TWO agents in parallel in a single response using the `Agent` tool:
+Read `.react-dev/01-requirements.md`. Then open monitoring panes and launch TWO agents in parallel in a single response using the `Agent` tool:
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🔍 Code Explorer`, `pane-name: 🔍 explorer`, `output-file: .react-dev/02-analysis.md`
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🎨 UX Designer`, `pane-name: 🎨 ux`, `output-file: .react-dev/02-analysis.md`
 
 **2a. Codebase Explorer:**
 
@@ -259,6 +281,8 @@ Read `.react-dev/01-requirements.md` and `.react-dev/02-analysis.md`.
 
 Use `EnterWorktree` to create an isolated development branch before implementation begins. This protects the main branch during development.
 
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: ⚛️ React Developer`, `pane-name: ⚛️ react`, `output-file: .react-dev/03-implementation.md`
+
 Then launch the React developer agent:
 
 ```
@@ -355,6 +379,9 @@ Do NOT proceed to Phase 3 until the user selects option 1.
 ### Step 4: Parallel Testing and Code Review
 
 Read `.react-dev/01-requirements.md`, `.react-dev/02-analysis.md`, and `.react-dev/03-implementation.md`.
+
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🧪 Test Automator`, `pane-name: 🧪 tests`, `output-file: .react-dev/04-quality.md`
+use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🔎 Code Reviewer`, `pane-name: 🔎 reviewer`, `output-file: .react-dev/04-quality.md`
 
 Launch TWO agents in parallel in a single response:
 
@@ -611,17 +638,39 @@ Update `state.json`:
 }
 ```
 
+#### Move artifacts to feature docs folder
+
+Derive the feature folder name from `$FEATURE`: lowercase, spaces replaced by hyphens, special characters removed (e.g., `"User Profile Page"` → `user-profile-page`). Call this `$FEATURE_SLUG`.
+
+Create the destination directory and move all generated files:
+
+```bash
+mkdir -p docs/features/$FEATURE_SLUG
+mv .react-dev/01-requirements.md    docs/features/$FEATURE_SLUG/
+mv .react-dev/02-analysis.md        docs/features/$FEATURE_SLUG/
+mv .react-dev/03-implementation.md  docs/features/$FEATURE_SLUG/
+mv .react-dev/04-quality.md         docs/features/$FEATURE_SLUG/
+mv .react-dev/05-summary.md         docs/features/$FEATURE_SLUG/
+mv .react-dev/state.json            docs/features/$FEATURE_SLUG/
+```
+
+After moving, remove the now-empty `.react-dev/` directory:
+
+```bash
+rmdir .react-dev
+```
+
 Present the final message:
 
 ```
 React feature development complete: $FEATURE
 
-Artifacts:
-- .react-dev/01-requirements.md — Requirements
-- .react-dev/02-analysis.md    — Codebase & UX analysis
-- .react-dev/03-implementation.md — Implementation summary
-- .react-dev/04-quality.md     — Tests & code review
-- .react-dev/05-summary.md     — Final delivery summary
+Artifacts saved to docs/features/$FEATURE_SLUG/:
+- 01-requirements.md    — Requirements
+- 02-analysis.md        — Codebase & UX analysis
+- 03-implementation.md  — Implementation summary
+- 04-quality.md         — Tests & code review
+- 05-summary.md         — Final delivery summary
 
 Next steps (if any):
 [List any deferred items from points of attention]
