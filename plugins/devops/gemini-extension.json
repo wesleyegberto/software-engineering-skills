@@ -20,6 +20,8 @@
     "multi-cloud"
   ],
   "languages": [
-    "devops"
+    "bash",
+    "docker",
+    "helm",
   ]
 }

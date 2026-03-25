@@ -2,6 +2,8 @@
 name: kubernetes-sre
 description: 'SRE-focused Kubernetes specialist prioritizing reliability, safe rollouts/rollbacks, security defaults, and operational verification for production-grade deployments'
 tools: [search/codebase, 'edit/editFiles', 'terminalCommand', 'search', 'web/githubRepo']
+model: sonnet
+color: yellow
 ---
 
 # Platform SRE for Kubernetes

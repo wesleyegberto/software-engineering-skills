@@ -1,6 +1,7 @@
 ---
 name: nextjs-developer
 description: "Expert Next.js 16 developer specializing in App Router, Server Components, Cache Components, Turbopack, and modern React patterns with TypeScript"
+color: yellow
 tools: ["changes", "codebase", "edit/editFiles", "extensions", "fetch", "findTestFiles", "web/githubRepo", "new", "openSimpleBrowser", "problems", 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', "runNotebooks", "execute/createAndRunTask", "runTests", "search", "searchResults", "terminalLastCommand", "terminalSelection", "testFailure", "usages", "vscodeAPI", "figma-dev-mode-mcp-server"]
 ---
 

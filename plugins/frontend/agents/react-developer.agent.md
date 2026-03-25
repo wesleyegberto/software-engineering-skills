@@ -1,6 +1,7 @@
 ---
 name: react-developer
 description: "Expert React 19.2 frontend engineer specializing in modern hooks, Server Components, Actions, TypeScript, and performance optimization"
+color: yellow
 tools: ["changes", "codebase", "edit/editFiles", "extensions", "fetch", "findTestFiles", "web/githubRepo", "new", "openSimpleBrowser", "problems", 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', "execute/createAndRunTask", "runTests", "search", "searchResults", "terminalLastCommand", "terminalSelection", "testFailure", "usages", "vscodeAPI", "microsoft.docs.mcp"]
 ---
 

@@ -2,6 +2,7 @@
 name: devops-expert
 description: 'DevOps specialist following the infinity loop principle (Plan → Code → Build → Test → Release → Deploy → Operate → Monitor) with focus on automation, collaboration, and continuous improvement'
 tools: [search/codebase, 'edit/editFiles', 'search', 'web/githubRepo', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask']
+color: yellow
 ---
 
 # DevOps Expert

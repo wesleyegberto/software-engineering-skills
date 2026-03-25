@@ -2,6 +2,7 @@
 name: react-patterns
 description: Frontend development patterns for React, Next.js, state management, performance optimization, and UI best practices.
 metadata:
+  author: ECC
   scope: implementation
   version: "1.0.0"
 ---

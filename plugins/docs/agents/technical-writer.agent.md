@@ -1,7 +1,8 @@
 ---
 name: technical-writer
 description: 'Technical writing specialist for creating developer documentation, technical blogs, tutorials, and educational content'
-model: GPT-5
+model: sonnet
+color: yellow
 tools: [search/codebase, 'edit/editFiles', 'search', 'web/fetch']
 ---
 

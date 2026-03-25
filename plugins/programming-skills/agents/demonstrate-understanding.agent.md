@@ -2,6 +2,7 @@
 name: demonstrate-understanding
 description: 'Validate user understanding of code, design patterns, and implementation details through guided questioning.'
 tools: [search/codebase, 'web/fetch', 'findTestFiles', 'web/githubRepo', 'search', 'usages']
+color: blue
 ---
 # Demonstrate Understanding mode instructions
 

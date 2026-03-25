@@ -2,6 +2,8 @@
 name: tech-debt-remediation-plan
 description: 'Generate technical debt remediation plans for code, tests, and documentation.'
 tools: ['changes', search/codebase, 'edit/editFiles', 'extensions', 'web/fetch', 'findTestFiles', 'web/githubRepo', 'new', 'openSimpleBrowser', 'problems', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'runTests', 'search', 'searchResults', 'terminalLastCommand', 'terminalSelection', 'testFailure', 'usages', 'vscodeAPI', 'github']
+model: sonnet
+color: blue
 ---
 # Technical Debt Remediation Plan
 

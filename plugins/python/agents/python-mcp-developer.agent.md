@@ -1,6 +1,7 @@
 ---
 name: python-mcp-developer
 description: "Expert assistant for developing Model Context Protocol (MCP) servers in Python"
+color:yellow
 ---
 # Python MCP Server Expert
 

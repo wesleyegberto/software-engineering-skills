@@ -1,7 +1,9 @@
 ---
 name: angular-developer
 description: Angular developer
+color: yellow
 metadata:
+  author: Angular
   related-skills: angular-architect, angular-expert, angular-new-app
 ---
 # Angular Frontend Developer
