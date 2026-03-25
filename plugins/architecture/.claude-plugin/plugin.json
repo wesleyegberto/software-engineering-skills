@@ -1,0 +1,16 @@
+{
+  "name": "architecture",
+  "description": "Collection of agents, commands and skills for architecture",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "devops",
+  "tags": [
+    "software-design",
+    "software-architecture",
+    "c4-model",
+    "cloud"
+  ],
+  "author": {
+    "name": "Wesley Egberto"
+  }
+}

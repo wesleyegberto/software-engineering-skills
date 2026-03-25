@@ -1,0 +1,396 @@
+# System Architecture Design
+
+> **Related skills**: Consult as needed for the design:
+> - `architecture:system-design` — general system architecture
+> - `architecture-system-design` — architectural patterns and decisions
+> - `architecture-data-system-design` — data modeling and design
+> - `event-store-design` — event store, event sourcing and CQRS
+> - `microservices-architect` — microservices architecture
+> - `microservices-patterns` — tactical microservices patterns
+> - `software-architecture-patterns` — general software architecture patterns
+
+Please design a comprehensive system architecture for the following requirements:
+
+$ARGUMENTS
+
+## System Design Framework
+
+### 1. Requirements Clarification
+
+#### Functional Requirements
+- What features/capabilities are needed?
+- What are the core use cases?
+- What are the user workflows?
+
+#### Non-Functional Requirements
+- **Performance**: Response time, throughput targets
+- **Scalability**: Expected user/data growth
+- **Availability**: Uptime requirements (99.9%, 99.99%)
+- **Reliability**: Data durability, fault tolerance
+- **Consistency**: Strong vs eventual consistency
+- **Security**: Authentication, encryption, compliance
+- **Maintainability**: Code quality, deployment ease
+
+#### Constraints
+- Budget limitations
+- Technology restrictions
+- Timeline constraints
+- Team expertise
+
+### 2. Capacity Estimation
+
+#### Traffic Estimates
+```
+Daily Active Users (DAU): 1M
+Requests per user per day: 50
+Total daily requests: 50M
+Requests per second (RPS): 50M / 86400 ≈ 580 RPS
+Peak RPS (3x average): ~1740 RPS
+```
+
+#### Storage Estimates
+```
+Average data per user: 1KB
+Total users: 10M
+Total storage: 10GB
+Storage growth: 1GB/month
+5-year projection: 10GB + (60 months × 1GB) = 70GB
+```
+
+#### Bandwidth Estimates
+```
+Average request size: 1KB
+Average response size: 5KB
+Total bandwidth: (580 RPS × 6KB) = 3.5 MB/s
+```
+
+#### Memory/Cache Estimates
+```
+Cache 20% of hot data: 2GB
+Session storage: 100MB per 10K concurrent users
+```
+
+### 3. High-Level Architecture
+
+#### Architecture Diagram (Text Format)
+```
+                    ┌──────────────┐
+                    │    Client    │
+                    │  (Web/Mobile)│
+                    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │     CDN      │
+                    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │ Load Balancer│
+                    └──────┬───────┘
+                           │
+            ┌──────────────┼──────────────┐
+            │              │              │
+      ┌─────▼─────┐  ┌─────▼─────┐  ┌─────▼─────┐
+      │  Web      │  │  Web      │  │  Web      │
+      │  Server 1 │  │  Server 2 │  │  Server 3 │
+      └─────┬─────┘  └─────┬─────┘  └─────┬─────┘
+            │              │              │
+            └──────────────┼──────────────┘
+                           │
+            ┌──────────────┼──────────────┐
+            │              │              │
+      ┌─────▼─────┐  ┌─────▼─────┐  ┌─────▼─────┐
+      │   Cache   │  │ Message   │  │  Search   │
+      │  (Redis)  │  │   Queue   │  │(Elastic)  │
+      └───────────┘  └─────┬─────┘  └───────────┘
+                           │
+            ┌──────────────┼──────────────┐
+            │              │              │
+      ┌─────▼─────┐  ┌─────▼─────┐  ┌─────▼─────┐
+      │  Primary  │  │  Read     │  │  Object   │
+      │  Database │  │  Replica  │  │  Storage  │
+      └───────────┘  └───────────┘  └───────────┘
+```
+
+### 4. Component Design
+
+#### Load Balancer
+- **Purpose**: Distribute traffic across servers
+- **Options**: AWS ALB, Nginx, HAProxy
+- **Strategies**: Round-robin, least connections, IP hash
+- **Health checks**: Regular server health monitoring
+
+#### Web/Application Servers
+- **Stateless design**: No session data on servers
+- **Horizontal scaling**: Add more servers as needed
+- **Auto-scaling**: Scale based on CPU/memory metrics
+
+#### Caching Layer
+- **Technology**: Redis, Memcached
+- **What to cache**:
+  - Frequently accessed data
+  - Expensive computations
+  - Session data
+  - API responses
+- **Cache strategies**:
+  - Cache-aside (lazy loading)
+  - Write-through
+  - Write-behind
+- **TTL**: Appropriate expiration times
+- **Cache invalidation**: Clear when data changes
+
+#### Database
+- **Primary-Replica setup**:
+  - Write to primary
+  - Read from replicas
+- **Partitioning/Sharding**:
+  - Horizontal: Split by user_id range
+  - Vertical: Split by table/feature
+- **Indexing**: For query optimization
+- **Connection pooling**: Reuse connections
+
+#### Message Queue
+- **Technology**: RabbitMQ, Kafka, AWS SQS
+- **Use cases**:
+  - Async processing
+  - Event-driven architecture
+  - Decoupling services
+- **Patterns**:
+  - Producer-Consumer
+  - Pub-Sub
+  - Request-Reply
+
+#### Object Storage
+- **Technology**: AWS S3, Google Cloud Storage
+- **Use cases**:
+  - Images, videos, files
+  - Backups
+  - Logs
+- **CDN integration**: Fast global access
+
+### 5. Data Flow
+
+#### Read Flow
+```
+1. Client → CDN (if static content)
+2. Client → Load Balancer
+3. Load Balancer → Web Server
+4. Web Server → Check Cache
+   ├─ Cache Hit → Return data
+   └─ Cache Miss → Query Database
+       └─ Store in Cache → Return data
+```
+
+#### Write Flow
+```
+1. Client → Load Balancer
+2. Load Balancer → Web Server
+3. Web Server → Validate data
+4. Web Server → Write to Primary DB
+5. Web Server → Invalidate cache
+6. Web Server → Publish event to queue
+7. Background worker → Process event
+8. Return response to client
+```
+
+### 6. Scalability Strategies
+
+#### Horizontal Scaling
+- Add more servers/instances
+- Load balancer distributes traffic
+- Stateless application design required
+
+#### Vertical Scaling
+- Increase server resources (CPU, RAM)
+- Limited by hardware constraints
+- Temporary solution
+
+#### Database Scaling
+- **Read scaling**: Add read replicas
+- **Write scaling**: Sharding/partitioning
+- **Caching**: Reduce DB load
+- **NoSQL**: For specific use cases
+
+#### Microservices
+Split monolith into services:
+- User Service
+- Auth Service
+- Product Service
+- Order Service
+- Payment Service
+
+Each service:
+- Independent deployment
+- Own database
+- Specific responsibility
+
+### 7. Availability & Reliability
+
+#### Redundancy
+- Multiple servers in load balancer
+- Database replicas
+- Multi-region deployment
+- Backup systems
+
+#### Fault Tolerance
+- Graceful degradation
+- Circuit breakers
+- Retry logic with exponential backoff
+- Timeout configuration
+
+#### Disaster Recovery
+- Regular backups
+- Backup in different region
+- Recovery Time Objective (RTO)
+- Recovery Point Objective (RPO)
+
+#### Monitoring
+- **Metrics**: CPU, memory, response time, error rate
+- **Logging**: Centralized logging (ELK stack)
+- **Alerting**: PagerDuty, email, Slack
+- **Dashboards**: Grafana, Datadog
+
+### 8. Security Architecture
+
+#### Network Security
+- VPC/Private subnets
+- Security groups/Firewall rules
+- DDoS protection (Cloudflare, AWS Shield)
+
+#### Application Security
+- HTTPS/TLS encryption
+- Authentication (JWT, OAuth)
+- Authorization (RBAC, ABAC)
+- Input validation
+- SQL injection prevention
+- XSS prevention
+- CSRF protection
+
+#### Data Security
+- Encryption at rest
+- Encryption in transit
+- Key management (AWS KMS)
+- PII data handling
+- Audit logging
+
+### 9. API Gateway Pattern
+
+```
+Client → API Gateway → Microservices
+```
+
+**API Gateway responsibilities:**
+- Request routing
+- Authentication/Authorization
+- Rate limiting
+- Request/response transformation
+- Caching
+- Monitoring & logging
+
+### 10. Caching Strategies
+
+#### CDN Caching
+- Static assets (JS, CSS, images)
+- Geo-distributed
+- Edge caching
+
+#### Application Caching
+- Redis/Memcached
+- Session data
+- API responses
+- Database query results
+
+#### Browser Caching
+- Cache-Control headers
+- ETags
+- Service Workers
+
+### 11. Async Processing Pattern
+
+```
+Web Server → Message Queue → Worker
+```
+
+**Use cases:**
+- Email sending
+- Image processing
+- Report generation
+- Data analytics
+- Video encoding
+
+### 12. Data Consistency
+
+#### Strong Consistency
+- ACID transactions
+- Immediate consistency
+- Use for: Financial transactions, inventory
+
+#### Eventual Consistency
+- BASE properties
+- Higher availability
+- Use for: Social media feeds, analytics
+
+#### Patterns
+- Two-Phase Commit
+- Saga Pattern
+- Event Sourcing
+- CQRS (Command Query Responsibility Segregation)
+
+### 13. Rate Limiting
+
+#### Strategies
+- Fixed window
+- Sliding window
+- Token bucket
+- Leaky bucket
+
+#### Implementation
+```
+Rate Limit: 100 requests per minute per user
+Headers:
+  X-RateLimit-Limit: 100
+  X-RateLimit-Remaining: 95
+  X-RateLimit-Reset: 1640000000
+```
+
+### 14. Technology Stack Recommendations
+
+Based on requirements, suggest:
+
+#### Frontend
+- Framework: React, Vue, Angular
+- Mobile: React Native, Flutter
+- State Management: Redux, MobX
+
+#### Backend
+- Language: Node.js, Python, Java, Go
+- Framework: Express, Django, Spring Boot
+- API: REST, GraphQL, gRPC
+
+#### Database
+- Relational: PostgreSQL, MySQL
+- NoSQL: MongoDB, DynamoDB
+- Cache: Redis, Memcached
+- Search: Elasticsearch
+
+#### Infrastructure
+- Cloud: AWS, GCP, Azure
+- Containers: Docker, Kubernetes
+- CI/CD: GitHub Actions, Jenkins
+
+### 15. Output Format
+
+Provide:
+
+1. **Architecture Overview** - High-level description
+2. **Architecture Diagram** - Component relationships
+3. **Component Specifications** - Detailed component design
+4. **Data Flow** - Request/response flows
+5. **Scaling Strategy** - How to handle growth
+6. **Fault Tolerance** - Redundancy and recovery
+7. **Security Measures** - Security architecture
+8. **Technology Stack** - Recommended technologies
+9. **Capacity Planning** - Traffic/storage estimates
+10. **Trade-offs** - Design decisions and rationale
+11. **Deployment Strategy** - How to deploy and maintain
+
+Generate a complete, production-ready system architecture following best practices.
