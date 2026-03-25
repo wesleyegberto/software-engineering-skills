@@ -147,3 +147,14 @@ log.error("failed_fetch_market slug={}", slug, ex);
 - Favor deterministic tests; no hidden sleeps
 
 **Remember**: Keep code intentional, typed, and observable. Optimize for maintainability over micro-optimizations unless proven necessary.
+
+## Reference Guide
+
+Load detailed guidance based on context:
+
+| Topic | Reference | Load When |
+|-------|-----------|-----------|
+| General Patterns | `references/patterns.md` | Patterns for design classes, records, DTO, services, builders, constructors |
+| Security | `references/security.md` | Input validations, secret manager, exception details exposing, auth |
+| Testing | `references/testing.md` | Frameworks to use, how to structure packages and classes, unit and integration testing, naming |
+
