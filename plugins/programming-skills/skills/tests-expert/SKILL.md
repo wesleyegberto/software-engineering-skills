@@ -59,6 +59,7 @@ Load detailed guidance based on context:
 | Unit Testing | `references/unit-testing.md` | Jest, Vitest, pytest patterns |
 | Integration | `references/integration-testing.md` | API testing, Supertest |
 | E2E | `references/e2e-testing.md` | E2E strategy, user flows |
+| E2E Patterns | `references/e2e-patterns.md` | E2E strategy, patterns, configurations |
 | Performance | `references/performance-testing.md` | k6, load testing |
 | Security | `references/security-testing.md` | Security test checklist |
 | Reports | `references/test-reports.md` | Report templates, findings |
