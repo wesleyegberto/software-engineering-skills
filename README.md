@@ -1,5 +1,9 @@
 # software-engineering-skills
 
+![GitHub Stars](https://img.shields.io/github/stars/wesleyegberto/software-engineering-skills?style=flat-square)
+![License](https://img.shields.io/github/license/wesleyegberto/software-engineering-skills?style=flat-square)
+![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-blue?style=flat-square)
+
 Collection of agents, commands and skills for software engineering.
 
 Some skills were collected from authors listed in the [Resources section](#resources) and some were crafted from study notes and practical examples.
@@ -8,13 +12,37 @@ Some skills were collected from authors listed in the [Resources section](#resou
 
 Plugins are available for specific stacks: Java, Node.js, Python, Angular, React, DevOps tooling, and more.
 
-> **Note:** all plugins depend on `programming-skills` as a base.
+> [!NOTE]
+> All plugins depend on `programming-skills` as a base. Install it first before any other plugin.
 
-### Concepts
+## Table of Contents
 
-- 🤖 **Agents** — specialized AI personas with focused expertise (e.g., `java-reviewer`, `debugger`). Invoked via `@agent-name` in Claude Code.
-- ⚡ **Commands** — slash commands that trigger pre-built workflows (e.g., `/debug`, `/junit`). Invoked via `/command-name`.
-- 🧰 **Skills** — reusable knowledge prompts loaded into context to guide the agent's behavior on a specific topic.
+- [Concepts](#concepts)
+- [Structure](#structure)
+- [Quick Plugin Reference](#quick-plugin-reference)
+- [Which Plugin Should I Use?](#which-plugin-should-i-use)
+- [Install](#install)
+- [Usage](#usage)
+- [Plugins](#plugins)
+  - [programming-skills](#programming-skills)
+  - [java](#java)
+  - [python](#python)
+  - [node](#node)
+  - [frontend](#frontend)
+  - [devops](#devops)
+  - [docs](#docs)
+  - [architecture](#architecture)
+- [Scripts](#scripts)
+- [Contributing](#contributing)
+- [Resources](#resources)
+
+## Concepts
+
+| | Concept | Description | How to invoke |
+|-|---------|-------------|---------------|
+| 🤖 | **Agent** | Specialized AI persona with focused expertise | `@agent-name` in Claude Code |
+| ⚡ | **Command** | Slash command that triggers a pre-built workflow | `/command-name` |
+| 🧰 | **Skill** | Reusable knowledge prompt that guides agent behavior on a specific topic | Referenced in conversation context |
 
 ## Structure
 
@@ -26,6 +54,32 @@ plugins/<plugin-name>/
 ├── commands/   # Slash commands (/command-name)
 └── skills/     # Reusable knowledge prompts
 ```
+
+Plugin dependency:
+
+```
+programming-skills  (base — required by all)
+├── java
+├── python
+├── node
+├── frontend
+├── devops
+├── docs
+└── architecture
+```
+
+## Quick Plugin Reference
+
+| Plugin | 🤖 Agents | ⚡ Commands | 🧰 Skills | Stack |
+|--------|:---------:|:----------:|:---------:|-------|
+| [`programming-skills`](#programming-skills) | 11 | 5 | 22 | Any — foundation for all plugins |
+| [`java`](#java) | 5 | 7 | 10 | Java / Spring Boot |
+| [`python`](#python) | 2 | 4 | 19 | Python / Django / FastAPI |
+| [`node`](#node) | 2 | 2 | 11 | Node.js / JavaScript / TypeScript |
+| [`frontend`](#frontend) | 8 | 2 | 24 | React / Angular / Next.js / Mobile |
+| [`devops`](#devops) | 12 | 1 | 21 | CI/CD / Kubernetes / Terraform |
+| [`docs`](#docs) | 6 | 6 | 1 | Technical Writing / Documentation |
+| [`architecture`](#architecture) | — | 6 | 13 | System Design / C4 / ADRs |
 
 ## Install
 
@@ -39,7 +93,7 @@ claude --plugin-dir ./software-engineering-skills/plugins/<plugin-name>
 
 To install as a plugin, run the Claude Code command:
 
-```
+```sh
 # Remote
 claude plugin marketplace add https://github.com/wesleyegberto/software-engineering-skills.git
 
@@ -49,12 +103,12 @@ claude plugin marketplace add ./software-engineering-skills
 
 # Install a specific plugin
 claude plugin install programming-skills@software-engineering-skills
-claude plugin install docs@software-engineering-skills
 claude plugin install java@software-engineering-skills
-claude plugin install node@software-engineering-skills
 claude plugin install python@software-engineering-skills
+claude plugin install node@software-engineering-skills
 claude plugin install frontend@software-engineering-skills
 claude plugin install devops@software-engineering-skills
+claude plugin install docs@software-engineering-skills
 claude plugin install architecture@software-engineering-skills
 ```
 
@@ -68,13 +122,29 @@ git clone https://github.com/wesleyegberto/software-engineering-skills.git
 
 # Install extensions
 gemini extensions link ./software-engineering-skills/plugins/programming-skills/
+gemini extensions link ./software-engineering-skills/plugins/java/
+gemini extensions link ./software-engineering-skills/plugins/python/
+gemini extensions link ./software-engineering-skills/plugins/node/
+gemini extensions link ./software-engineering-skills/plugins/frontend/
 gemini extensions link ./software-engineering-skills/plugins/devops/
 gemini extensions link ./software-engineering-skills/plugins/docs/
-gemini extensions link ./software-engineering-skills/plugins/frontend/
-gemini extensions link ./software-engineering-skills/plugins/java/
-gemini extensions link ./software-engineering-skills/plugins/node/
-gemini extensions link ./software-engineering-skills/plugins/python/
 gemini extensions link ./software-engineering-skills/plugins/architecture/
+```
+
+## Usage
+
+After installation, you can invoke agents, commands and skills directly in Claude Code:
+
+```
+# Invoke a specialized agent
+@java-reviewer please review this PR for security issues
+
+# Run a slash command
+/debug
+/junit UserServiceTest
+
+# Ask Claude to use a skill's knowledge
+Use the clean-architecture skill to evaluate this module structure
 ```
 
 ## Plugins
@@ -83,12 +153,12 @@ gemini extensions link ./software-engineering-skills/plugins/architecture/
 
 The agent color is defined as follows:
 
-- `blue`: planner
-- `yellow`: worker
-- `green`: reviewer
-- `red`: problem solver
+- 🔵 `blue`: planner
+- 🟡 `yellow`: worker
+- 🟢 `green`: reviewer
+- 🔴 `red`: problem solver
 
-### `programming-skills`
+### `programming-skills` — Foundation for All Stacks
 
 Foundation plugin with general software engineering knowledge. All other plugins build on top of this one.
 
@@ -102,7 +172,7 @@ Foundation plugin with general software engineering knowledge. All other plugins
 
 ---
 
-### `java`
+### `java` — Java & Spring Boot Development
 
 Agents, commands and skills for Java development with Spring Boot.
 
@@ -116,7 +186,7 @@ Agents, commands and skills for Java development with Spring Boot.
 
 ---
 
-### `python`
+### `python` — Modern Python Development
 
 Agents, commands and skills for Python development.
 
@@ -130,7 +200,7 @@ Agents, commands and skills for Python development.
 
 ---
 
-### `node`
+### `node` — Node.js / JavaScript / TypeScript
 
 Agents, commands and skills for Node.js/JavaScript/TypeScript development.
 
@@ -144,7 +214,7 @@ Agents, commands and skills for Node.js/JavaScript/TypeScript development.
 
 ---
 
-### `frontend`
+### `frontend` — React, Angular, Next.js & Mobile
 
 Agents, commands and skills for frontend development (React, Angular, Next.js, mobile).
 
@@ -158,7 +228,7 @@ Agents, commands and skills for frontend development (React, Angular, Next.js, m
 
 ---
 
-### `devops`
+### `devops` — Infrastructure, CI/CD & Platform Engineering
 
 Agents, commands and skills for DevOps, infrastructure and platform engineering.
 
@@ -172,7 +242,7 @@ Agents, commands and skills for DevOps, infrastructure and platform engineering.
 
 ---
 
-### `docs`
+### `docs` — Technical Writing & Documentation
 
 Agents, commands and skills for technical writing and documentation generation.
 
@@ -186,9 +256,12 @@ Agents, commands and skills for technical writing and documentation generation.
 
 ---
 
-### `architecture`
+### `architecture` — System Design, C4 & ADRs
 
 Commands and skills for software architecture design and documentation.
+
+> [!NOTE]
+> No dedicated agents. Use `@software-engineer` or `@principal-software-engineer` from `programming-skills` alongside these commands and skills.
 
 **6 commands** · **13 skills**
 
@@ -213,6 +286,19 @@ The `scripts/` directory contains utilities for maintaining the repository:
   ```
 
 Original scripts are available [here](https://github.com/Jeffallan/claude-skills/tree/main/scripts)
+
+## Contributing
+
+Contributions are welcome! To add a new skill, agent or command:
+
+1. Follow the directory layout described in [Structure](#structure).
+2. Add the new item under the appropriate plugin in `plugins/<plugin-name>/`.
+3. Run the validation scripts before opening a PR:
+   ```sh
+   python scripts/validate-markdown.py
+   python scripts/validate-skills.py
+   ```
+4. Update the plugin table in this README to reflect the new item and its count.
 
 ## Resources
 
