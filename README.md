@@ -302,8 +302,10 @@ Contributions are welcome! To add a new skill, agent or command:
 
 ## Resources
 
-> Credits and references whenever possible.
+Credits and references used.
 
 - [Jeffallan](https://github.com/Jeffallan/claude-skills)
 - [Wondelai](https://github.com/wondelai/skills)
 - [Everything Claude Code](https://github.com/affaan-m/everything-claude-code)
+- [Claude How-To](https://github.com/luongnv89/claude-howto)
+

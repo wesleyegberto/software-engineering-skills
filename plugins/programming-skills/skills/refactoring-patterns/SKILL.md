@@ -22,6 +22,12 @@ A disciplined approach to improving the internal structure of existing code with
 
 **Goal: 10/10.** When reviewing or refactoring code, rate the structural quality 0-10 based on adherence to the principles below. A 10/10 means: no obvious smells remain, each function does one thing, names reveal intent, duplication is eliminated, and the test suite covers the refactored paths. Always provide the current score and specific refactorings needed to reach 10/10.
 
+- **9-10:** No visible smells. Each method does one thing, names reveal intent, duplication is eliminated, and tests cover refactored paths. Improvements would be cosmetic only.
+- **7-8:** Mostly clean with isolated smells (e.g., one long method, minor duplication). Core design is sound; targeted refactorings would polish without restructuring.
+- **5-6:** Multiple smells present across different areas. Some methods are too long, naming is inconsistent, or duplication is spreading. Refactoring is needed but risk is manageable with tests.
+- **3-4:** Significant structural problems: large classes, deep nesting, pervasive duplication, or poor separation of concerns. Refactoring requires a coordinated plan and tests must be established first.
+- **1-2:** Code works but is nearly unmaintainable. Smells are systemic -- god objects, no abstraction, tangled responsibilities. Major refactoring investment needed before safe evolution is possible.
+
 ## The Refactoring Patterns Framework
 
 Six areas of focus for systematically improving code structure:
@@ -191,6 +197,40 @@ See: [references/simplifying-conditionals.md](references/simplifying-conditional
 
 See: [references/refactoring-workflow.md](references/refactoring-workflow.md)
 
+## Analysis Workflow
+
+Before starting any refactoring session, follow these steps to establish a baseline and identify priorities.
+
+**Step 1: Automated Analysis** — always suggest this, even when code is provided inline (user can save it to a file first):
+
+> **Quick automated scan:** Run `detect-smells.py` and `analyze-complexity.py` from the scripts directory to get an objective baseline before any manual review.
+
+```bash
+python scripts/detect-smells.py <file>
+python scripts/analyze-complexity.py <file>
+```
+
+**Step 2: Manual Review**
+
+- Walk through code systematically
+- Note each smell with location and severity
+- Categorize by impact (Critical/High/Medium/Low)
+
+**Step 3: Prioritization** — focus on smells that:
+
+- Block current development
+- Cause bugs or confusion
+- Affect most-changed code paths
+
+**Step 4: Output — Smell Report**
+
+Present to user:
+
+- List of identified smells with locations
+- Severity assessment for each
+- Recommended priority order
+- Request approval on priorities before proceeding
+
 ## Common Mistakes
 
 | Mistake | Why It Fails | Fix |
@@ -217,6 +257,35 @@ See: [references/refactoring-workflow.md](references/refactoring-workflow.md)
 | Are you committing after each refactoring step? | You risk losing work and mixing changes | Commit after every green-to-green transformation |
 | Is the code easier to read after your change? | The refactoring may have added complexity | Revert and try a different approach |
 
+## Metrics Comparison
+
+**Always include a metrics comparison table** (estimate if the file is not available). For exact values, run:
+
+```bash
+python scripts/analyze-complexity.py <file>
+```
+
+Present improvements:
+
+- Lines of code change
+- Cyclomatic complexity change
+- Maintainability index change
+
+Note: if code was provided inline, remind the user to save it to a file and run the command above to get precise metrics.
+
+## Plan Structure
+
+Use the template at `./templates/refactoring-plan.md`.
+
+For each refactoring:
+
+- Target: What code will change
+- Smell: What problem it addresses
+- Refactoring: Which technique to apply
+- Steps: Detailed micro-steps
+- Risks: What could go wrong
+- Rollback: How to undo if needed
+
 ## Reference Files
 
 - [smell-catalog.md](references/smell-catalog.md): Comprehensive catalog of code smells organized by family -- Bloaters, Object-Orientation Abusers, Change Preventers, Dispensables, and Couplers -- with detection heuristics and fix mappings
@@ -226,14 +295,8 @@ See: [references/refactoring-workflow.md](references/refactoring-workflow.md)
 - [simplifying-conditionals.md](references/simplifying-conditionals.md): Decompose Conditional, Consolidate Conditional, Replace Nested Conditional with Guard Clauses, Replace Conditional with Polymorphism, Introduce Special Case, Introduce Assertion -- with before/after examples
 - [refactoring-workflow.md](references/refactoring-workflow.md): The refactoring cycle, when to refactor, when NOT to refactor, refactoring and performance, Branch by Abstraction, Parallel Change
 
-## Further Reading
+## Scripts
 
-This skill is based on the definitive guide to improving the design of existing code:
+- `./scripts/analyze-complexity.py`: Run to analyze code complexity metrics
+- `./scripts/detect-smells.py`: Run to automated smell detection
 
-- [*"Refactoring: Improving the Design of Existing Code (2nd Edition)"*](https://www.amazon.com/Refactoring-Improving-Existing-Addison-Wesley-Signature/dp/0134757599?tag=wondelai00-20) by Martin Fowler
-- [*"Working Effectively with Legacy Code"*](https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052?tag=wondelai00-20) by Michael Feathers (companion for code without tests)
-- [*"Clean Code: A Handbook of Agile Software Craftsmanship"*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882?tag=wondelai00-20) by Robert C. Martin (complementary naming and style principles)
-
-## About the Author
-
-**Martin Fowler** is the Chief Scientist at Thoughtworks and one of the most influential voices in software engineering. He is the author of *Refactoring: Improving the Design of Existing Code* (1999, 2nd edition 2018), which introduced the concept of named, catalog-based refactoring transformations to mainstream software development. Fowler is also the author of *Patterns of Enterprise Application Architecture*, *UML Distilled*, and numerous influential articles on software design, agile methodology, and continuous delivery. He was a signatory of the Agile Manifesto and has spent decades advocating for evolutionary design -- the practice of continuously improving code structure through disciplined, incremental refactoring rather than upfront big design. His refactoring catalog, originally written in Java, has been adapted to virtually every programming language and is built into the automated refactoring tools of every major IDE.
