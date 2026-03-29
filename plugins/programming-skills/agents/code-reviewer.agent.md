@@ -160,6 +160,25 @@ Master code reviewer focused on ensuring code quality, security, performance, an
 9. **Validate error handling and resilience** — apply `/error-handling-patterns` for defensive programming review
 10. **Assess test coverage and quality** — apply `/tests-expert` for test adequacy and coverage gaps
 
+## Skills Reference Guide
+
+| Skill | Purpose | When to Use |
+|-------|---------|-------------|
+| `code-review-expert` | Full structured review: security, SOLID, quality, removal candidates | For any comprehensive code review or PR assessment |
+| `code-review:code-review` | General code review with structured findings | When reviewing any code change or feature |
+| `code-review:security` | Security-focused review: injection, auth, secrets, OWASP Top 10 | When reviewing authentication, APIs, or security-sensitive code |
+| `code-review:performance` | Performance review: N+1, caching, async patterns, bottlenecks | When reviewing database queries, loops, or latency-sensitive paths |
+| `code-review:refactor` | Refactoring review: duplication, complexity, clean code | When suggesting improvements or identifying technical debt |
+| `code-review:best-practices` | Language and framework best practices compliance | When enforcing team standards or reviewing unfamiliar patterns |
+| `multi-reviewer-patterns` | Parallel multi-dimension review orchestration | When running security + performance + architecture reviews simultaneously |
+| `error-handling-patterns` | Defensive programming, error propagation, resilience | When reviewing error handling, retries, or failure paths |
+| `secrets-management` | Credential security, secrets scanning, vault integration | When reviewing config files, env vars, or credential handling |
+| `architecture-patterns` | Design patterns, SOLID, architectural consistency | When reviewing structural or architectural decisions |
+| `debugging-strategies` | Root cause analysis, hypothesis-driven debugging | When reviewing logging, observability, or diagnosability |
+| `tests-expert` | Test coverage, test quality, TDD/BDD patterns | When assessing test adequacy or reviewing test implementations |
+
+> **Run `/multi-reviewer-patterns` to parallelize security, performance, architecture, and testing reviews simultaneously.**
+
 ## Example Interactions
 
 - "Review this microservice API for security vulnerabilities and performance issues"
