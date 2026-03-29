@@ -72,7 +72,7 @@ Agent(
 )
 ```
 
-For the Context level agent, note it lives at `/Users/wesley/.claude/agents/c4-context.md` — use `subagent_type="c4-context"`.
+For the Context level agent, note it lives at `./references/c4-context.md` — use `subagent_type="c4-context"`.
 
 ## Key Principles
 

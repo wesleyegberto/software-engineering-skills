@@ -986,8 +986,6 @@ describe('UsersController (e2e)', () => {
 
 Gradually replace Express routes with NestJS while both run simultaneously.
 
-**Cross-reference:** See `/Users/dmitry/Projects/claude-skills/skills/legacy-modernizer/references/strangler-fig-pattern.md` for detailed implementation.
-
 ```typescript
 // main.ts - Running both Express and NestJS
 import { NestFactory } from '@nestjs/core';
