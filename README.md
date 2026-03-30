@@ -73,13 +73,13 @@ programming-skills  (base — required by all)
 | Plugin | 🤖 Agents | ⚡ Commands | 🧰 Skills | Stack |
 |--------|:---------:|:----------:|:---------:|-------|
 | [`programming-skills`](#programming-skills) | 11 | 5 | 22 | Any — foundation for all plugins |
-| [`java`](#java) | 5 | 7 | 10 | Java / Spring Boot |
+| [`java`](#java) | 5 | 7 | 11 | Java / Spring Boot |
 | [`python`](#python) | 2 | 4 | 19 | Python / Django / FastAPI |
 | [`node`](#node) | 2 | 2 | 11 | Node.js / JavaScript / TypeScript |
 | [`frontend`](#frontend) | 8 | 2 | 24 | React / Angular / Next.js / Mobile |
 | [`devops`](#devops) | 12 | 1 | 21 | CI/CD / Kubernetes / Terraform |
-| [`docs`](#docs) | 6 | 6 | 1 | Technical Writing / Documentation |
-| [`architecture`](#architecture) | — | 6 | 13 | System Design / C4 / ADRs |
+| [`docs`](#docs) | 6 | 5 | 1 | Technical Writing / Documentation |
+| [`architecture`](#architecture) | 9 | 6 | 13 | System Design / C4 / ADRs |
 
 ## Install
 
@@ -176,13 +176,13 @@ Foundation plugin with general software engineering knowledge. All other plugins
 
 Agents, commands and skills for Java development with Spring Boot.
 
-**5 agents** · **7 commands** · **10 skills**
+**5 agents** · **7 commands** · **11 skills**
 
 | Category | Items |
 |----------|-------|
 | 🤖 Agents | `java-architect`, `java-build-resolver`, `java-mcp-developer`, `java-reviewer`, `java-spring-boot` |
 | ⚡ Commands | `/create-project`, `/docs`, `/junit`, `/mcp-server-generator`, `/refactoring-extract-method`, `/refactoring-remove-parameter`, `/spring-boot` |
-| 🧰 Skills | `java-architect`, `java-code-review`, `java-coding-standards`, `java-jpa-patterns`, `java-performance`, `java-spring-boot-expert`, `java-spring-boot-security`, `java-spring-boot-testing`, `java-spring-boot-verification-loop`, `java-feature-development` |
+| 🧰 Skills | `java-architect`, `java-code-review`, `java-coding-standards`, `java-jackknife`, `java-jpa-patterns`, `java-performance`, `java-spring-boot-expert`, `java-spring-boot-security`, `java-spring-boot-testing`, `java-spring-boot-verification-loop`, `java-feature-development` |
 
 ---
 
@@ -246,27 +246,25 @@ Agents, commands and skills for DevOps, infrastructure and platform engineering.
 
 Agents, commands and skills for technical writing and documentation generation.
 
-**6 agents** · **6 commands** · **1 skill**
+**6 agents** · **5 commands** · **1 skill**
 
 | Category | Items |
 |----------|-------|
 | 🤖 Agents | `api-documenter`, `documentation-architect`, `mermaid-expert`, `reference-builder`, `technical-writer`, `tutorial-builder` |
-| ⚡ Commands | `/code-exemplars-blueprint-generator`, `/code-explain`, `/doc-generate`, `/readme-blueprint-generator`, `/update-markdown-file-index`, `/write-coding-standards-from-file` |
+| ⚡ Commands | `/code-exemplars-blueprint-generator`, `/code-explain`, `/doc-generate`, `/readme-blueprint-generator`, `/write-coding-standards-from-file` |
 | 🧰 Skills | `code-documenter` |
 
 ---
 
 ### `architecture` — System Design, C4 & ADRs
 
-Commands and skills for software architecture design and documentation.
+Agents, commands and skills for software architecture design and documentation.
 
-> [!NOTE]
-> No dedicated agents. Use `@software-engineer` or `@principal-software-engineer` from `programming-skills` alongside these commands and skills.
-
-**6 commands** · **13 skills**
+**9 agents** · **6 commands** · **13 skills**
 
 | Category | Items |
 |----------|-------|
+| 🤖 Agents | `api-design-architect`, `architect-plan`, `architect-review`, `backend-architect`, `cloud-architect`, `event-sourcing-architect`, `graphql-architect`, `hybrid-cloud-architect`, `system-architecture-reviewer` |
 | ⚡ Commands | `/architecture-elaboration`, `/blueprint-generator`, `/c4-generator`, `/design-api`, `/haiku-doc-generator`, `/system-design` |
 | 🧰 Skills | `architecture-data-system-design`, `architecture-decision-records`, `architecture-designer`, `architecture-system-design`, `c4-generator`, `c4-model`, `cloud-architect`, `codebase-improve-architecture`, `event-store-design`, `event-stream-projection-patterns`, `microservices-architect`, `microservices-patterns`, `software-architecture-patterns` |
 
