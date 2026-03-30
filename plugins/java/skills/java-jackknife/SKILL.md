@@ -14,6 +14,23 @@ metadata:
 
 # Jackknife
 
+## Instalação
+
+Adicione o grupo do plugin ao `~/.m2/settings.xml` para usar o comando curto `mvn jackknife:*` sem prefixo de grupo:
+
+```xml
+<settings>
+  <pluginGroups>
+    <pluginGroup>org.tomitribe.jackknife</pluginGroup>
+  </pluginGroups>
+</settings>
+```
+
+Sem essa configuração, os comandos precisam do prefixo completo:
+`mvn org.tomitribe.jackknife:jackknife-maven-plugin:instrument ...`
+
+## Uso
+
 Two capabilities for working with Java dependencies:
 
 1. **Explore** — Find classes, read decompiled source, understand APIs.
