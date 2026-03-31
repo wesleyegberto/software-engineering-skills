@@ -255,7 +255,7 @@ Launch the architecture agent:
 
 ```
 Agent:
-  subagent_type: "motivai:backend-architect"
+  subagent_type: "backend-architect"
   description: "Design Node.js backend architecture for $FEATURE"
   prompt: |
     You are a backend architect. Design the detailed technical architecture for this
