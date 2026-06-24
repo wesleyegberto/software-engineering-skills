@@ -306,4 +306,5 @@ Credits and references used.
 - [Wondelai](https://github.com/wondelai/skills)
 - [Everything Claude Code](https://github.com/affaan-m/everything-claude-code)
 - [Claude How-To](https://github.com/luongnv89/claude-howto)
+- [Angular Skills](https://github.com/angular/skills)
 

@@ -790,19 +790,20 @@ Update `state.json`:
 
 #### Move artifacts to feature docs folder
 
-Derive the feature folder name from `$FEATURE`: lowercase, spaces replaced by hyphens, special characters removed (e.g., `"User Authentication"` → `user-authentication`). Call this `$FEATURE_SLUG`.
+Derive the feature folder name from `$FEATURE`: lowercase, spaces replaced by hyphens, special characters removed (e.g., `"User Authentication"` → `user-authentication`). Call this `$FEATURE_SLUG`. Also capture today's date as `$DATE` (format `YYYY-MM-DD`).
 
 Create the destination directory and move all generated files:
 
 ```bash
-mkdir -p docs/features/$FEATURE_SLUG
-mv .node-dev/01-requirements.md      docs/features/$FEATURE_SLUG/
-mv .node-dev/02-codebase-analysis.md docs/features/$FEATURE_SLUG/
-mv .node-dev/03-architecture.md      docs/features/$FEATURE_SLUG/
-mv .node-dev/04-implementation.md    docs/features/$FEATURE_SLUG/
-mv .node-dev/05-quality.md           docs/features/$FEATURE_SLUG/
-mv .node-dev/06-summary.md           docs/features/$FEATURE_SLUG/
-mv .node-dev/state.json              docs/features/$FEATURE_SLUG/
+DATE=$(date +%Y-%m-%d)
+mkdir -p .spec/features/$DATE-$FEATURE_SLUG/artifacts/node
+mv .node-dev/01-requirements.md      .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/02-codebase-analysis.md .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/03-architecture.md      .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/04-implementation.md    .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/05-quality.md           .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/06-summary.md           .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/state.json              .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
 ```
 
 After moving, remove the now-empty `.node-dev/` directory:
@@ -816,7 +817,7 @@ Present the final message:
 ```
 Node.js backend feature development complete: $FEATURE
 
-Artifacts saved to docs/features/$FEATURE_SLUG/:
+Artifacts saved to .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/:
 - 01-requirements.md      — Requirements
 - 02-codebase-analysis.md — Codebase exploration
 - 03-architecture.md      — Backend architecture design
