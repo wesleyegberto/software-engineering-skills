@@ -646,13 +646,13 @@ Create the destination directory and move all generated files:
 
 ```bash
 DATE=$(date +%Y-%m-%d)
-mkdir -p .spec/features/$DATE-$FEATURE_SLUG/artifacts/react
-mv .react-dev/01-requirements.md    .spec/features/$DATE-$FEATURE_SLUG/artifacts/react/
-mv .react-dev/02-analysis.md        .spec/features/$DATE-$FEATURE_SLUG/artifacts/react/
-mv .react-dev/03-implementation.md  .spec/features/$DATE-$FEATURE_SLUG/artifacts/react/
-mv .react-dev/04-quality.md         .spec/features/$DATE-$FEATURE_SLUG/artifacts/react/
-mv .react-dev/05-summary.md         .spec/features/$DATE-$FEATURE_SLUG/artifacts/react/
-mv .react-dev/state.json            .spec/features/$DATE-$FEATURE_SLUG/artifacts/react/
+mkdir -p .specs/features/$DATE-$FEATURE_SLUG/artifacts/react
+mv .react-dev/01-requirements.md    .specs/features/$DATE-$FEATURE_SLUG/artifacts/react/
+mv .react-dev/02-analysis.md        .specs/features/$DATE-$FEATURE_SLUG/artifacts/react/
+mv .react-dev/03-implementation.md  .specs/features/$DATE-$FEATURE_SLUG/artifacts/react/
+mv .react-dev/04-quality.md         .specs/features/$DATE-$FEATURE_SLUG/artifacts/react/
+mv .react-dev/05-summary.md         .specs/features/$DATE-$FEATURE_SLUG/artifacts/react/
+mv .react-dev/state.json            .specs/features/$DATE-$FEATURE_SLUG/artifacts/react/
 ```
 
 After moving, remove the now-empty `.react-dev/` directory:
@@ -666,7 +666,7 @@ Present the final message:
 ```
 React feature development complete: $FEATURE
 
-Artifacts saved to .spec/features/$DATE-$FEATURE_SLUG/artifacts/react/:
+Artifacts saved to .specs/features/$DATE-$FEATURE_SLUG/artifacts/react/:
 - 01-requirements.md    — Requirements
 - 02-analysis.md        — Codebase & UX analysis
 - 03-implementation.md  — Implementation summary

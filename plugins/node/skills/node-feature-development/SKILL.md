@@ -796,14 +796,14 @@ Create the destination directory and move all generated files:
 
 ```bash
 DATE=$(date +%Y-%m-%d)
-mkdir -p .spec/features/$DATE-$FEATURE_SLUG/artifacts/node
-mv .node-dev/01-requirements.md      .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
-mv .node-dev/02-codebase-analysis.md .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
-mv .node-dev/03-architecture.md      .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
-mv .node-dev/04-implementation.md    .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
-mv .node-dev/05-quality.md           .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
-mv .node-dev/06-summary.md           .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
-mv .node-dev/state.json              .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mkdir -p .specs/features/$DATE-$FEATURE_SLUG/artifacts/node
+mv .node-dev/01-requirements.md      .specs/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/02-codebase-analysis.md .specs/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/03-architecture.md      .specs/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/04-implementation.md    .specs/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/05-quality.md           .specs/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/06-summary.md           .specs/features/$DATE-$FEATURE_SLUG/artifacts/node/
+mv .node-dev/state.json              .specs/features/$DATE-$FEATURE_SLUG/artifacts/node/
 ```
 
 After moving, remove the now-empty `.node-dev/` directory:
@@ -817,7 +817,7 @@ Present the final message:
 ```
 Node.js backend feature development complete: $FEATURE
 
-Artifacts saved to .spec/features/$DATE-$FEATURE_SLUG/artifacts/node/:
+Artifacts saved to .specs/features/$DATE-$FEATURE_SLUG/artifacts/node/:
 - 01-requirements.md      — Requirements
 - 02-codebase-analysis.md — Codebase exploration
 - 03-architecture.md      — Backend architecture design

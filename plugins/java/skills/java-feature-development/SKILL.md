@@ -780,14 +780,14 @@ Create the destination directory and move all generated files:
 
 ```bash
 DATE=$(date +%Y-%m-%d)
-mkdir -p .spec/features/$DATE-$FEATURE_SLUG/artifacts/java
-mv .java-dev/01-requirements.md      .spec/features/$DATE-$FEATURE_SLUG/artifacts/java/
-mv .java-dev/02-codebase-analysis.md .spec/features/$DATE-$FEATURE_SLUG/artifacts/java/
-mv .java-dev/03-architecture.md      .spec/features/$DATE-$FEATURE_SLUG/artifacts/java/
-mv .java-dev/04-implementation.md    .spec/features/$DATE-$FEATURE_SLUG/artifacts/java/
-mv .java-dev/05-quality.md           .spec/features/$DATE-$FEATURE_SLUG/artifacts/java/
-mv .java-dev/06-summary.md           .spec/features/$DATE-$FEATURE_SLUG/artifacts/java/
-mv .java-dev/state.json              .spec/features/$DATE-$FEATURE_SLUG/artifacts/java/
+mkdir -p .specs/features/$DATE-$FEATURE_SLUG/artifacts/java
+mv .java-dev/01-requirements.md      .specs/features/$DATE-$FEATURE_SLUG/artifacts/java/
+mv .java-dev/02-codebase-analysis.md .specs/features/$DATE-$FEATURE_SLUG/artifacts/java/
+mv .java-dev/03-architecture.md      .specs/features/$DATE-$FEATURE_SLUG/artifacts/java/
+mv .java-dev/04-implementation.md    .specs/features/$DATE-$FEATURE_SLUG/artifacts/java/
+mv .java-dev/05-quality.md           .specs/features/$DATE-$FEATURE_SLUG/artifacts/java/
+mv .java-dev/06-summary.md           .specs/features/$DATE-$FEATURE_SLUG/artifacts/java/
+mv .java-dev/state.json              .specs/features/$DATE-$FEATURE_SLUG/artifacts/java/
 ```
 
 After moving, remove the now-empty `.java-dev/` directory:
@@ -801,7 +801,7 @@ Present the final message:
 ```
 Java Spring Boot feature development complete: $FEATURE
 
-Artifacts saved to .spec/features/$DATE-$FEATURE_SLUG/artifacts/java/:
+Artifacts saved to .specs/features/$DATE-$FEATURE_SLUG/artifacts/java/:
 - 01-requirements.md      — Requirements
 - 02-codebase-analysis.md — Codebase exploration
 - 03-architecture.md      — Backend architecture design
