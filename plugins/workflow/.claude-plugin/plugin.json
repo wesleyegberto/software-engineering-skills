@@ -1,0 +1,13 @@
+{
+  "name": "workflow",
+  "description": "Collection of agents, commands and skills for a generic software development workflow",
+  "version": "1.0.0",
+  "license": "MIT",
+  "category": "software-development",
+  "tags": [
+    "software-development"
+  ],
+  "author": {
+    "name": "Wesley Egberto"
+  }
+}

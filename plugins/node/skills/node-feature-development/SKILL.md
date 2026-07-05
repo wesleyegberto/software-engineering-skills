@@ -353,8 +353,6 @@ If option 3, update `state.json` status to `"paused"` and stop.
 
 Read `.node-dev/01-requirements.md`, `.node-dev/02-codebase-analysis.md`, and `.node-dev/03-architecture.md`.
 
-Use `EnterWorktree` to create an isolated development branch before implementation begins.
-
 use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: 🟢 Node.js Developer`, `pane-name: 🟢 node`, `output-file: .node-dev/04-implementation.md`
 
 Then launch the implementation agent — use `node:typescript-developer` if the project uses TypeScript, or `node:javascript-developer` if it uses plain JavaScript (check the codebase analysis):
@@ -362,7 +360,6 @@ Then launch the implementation agent — use `node:typescript-developer` if the 
 ```
 Agent:
   subagent_type: "node:typescript-developer"   # or node:javascript-developer
-  isolation: "worktree"
   description: "Implement Node.js feature: $FEATURE"
   prompt: |
     You are a senior Node.js backend engineer. Implement this feature based on the

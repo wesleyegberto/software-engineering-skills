@@ -17,24 +17,29 @@ Plugins are available for specific stacks: Java, Node.js, Python, Angular, React
 
 ## Table of Contents
 
-- [Concepts](#concepts)
-- [Structure](#structure)
-- [Quick Plugin Reference](#quick-plugin-reference)
-- [Which Plugin Should I Use?](#which-plugin-should-i-use)
-- [Install](#install)
-- [Usage](#usage)
-- [Plugins](#plugins)
-  - [programming-skills](#programming-skills)
-  - [java](#java)
-  - [python](#python)
-  - [node](#node)
-  - [frontend](#frontend)
-  - [devops](#devops)
-  - [docs](#docs)
-  - [architecture](#architecture)
-- [Scripts](#scripts)
-- [Contributing](#contributing)
-- [Resources](#resources)
+- [software-engineering-skills](#software-engineering-skills)
+  - [Table of Contents](#table-of-contents)
+  - [Concepts](#concepts)
+  - [Structure](#structure)
+  - [Quick Plugin Reference](#quick-plugin-reference)
+  - [Install](#install)
+    - [Claude Code](#claude-code)
+    - [Gemini](#gemini)
+  - [Usage](#usage)
+  - [Plugins](#plugins)
+    - [Agent Colors](#agent-colors)
+    - [`programming-skills` — Foundation for All Stacks](#programming-skills--foundation-for-all-stacks)
+    - [`java` — Java \& Spring Boot Development](#java--java--spring-boot-development)
+    - [`python` — Modern Python Development](#python--modern-python-development)
+    - [`node` — Node.js / JavaScript / TypeScript](#node--nodejs--javascript--typescript)
+    - [`frontend` — React, Angular, Next.js \& Mobile](#frontend--react-angular-nextjs--mobile)
+    - [`devops` — Infrastructure, CI/CD \& Platform Engineering](#devops--infrastructure-cicd--platform-engineering)
+    - [`docs` — Technical Writing \& Documentation](#docs--technical-writing--documentation)
+    - [`architecture` — System Design, C4 \& ADRs](#architecture--system-design-c4--adrs)
+    - [`workflow` — Development Lifecycle Orchestration](#workflow--development-lifecycle-orchestration)
+  - [Scripts](#scripts)
+  - [Contributing](#contributing)
+  - [Resources](#resources)
 
 ## Concepts
 
@@ -65,7 +70,8 @@ programming-skills  (base — required by all)
 ├── frontend
 ├── devops
 ├── docs
-└── architecture
+├── architecture
+└── workflow
 ```
 
 ## Quick Plugin Reference
@@ -80,6 +86,7 @@ programming-skills  (base — required by all)
 | [`devops`](#devops) | 12 | 1 | 21 | CI/CD / Kubernetes / Terraform |
 | [`docs`](#docs) | 6 | 5 | 1 | Technical Writing / Documentation |
 | [`architecture`](#architecture) | 9 | 6 | 13 | System Design / C4 / ADRs |
+| [`workflow`](#workflow) | 0 | 0 | 4 | Development Lifecycle / Any methodology |
 
 ## Install
 
@@ -110,6 +117,7 @@ claude plugin install frontend@software-engineering-skills
 claude plugin install devops@software-engineering-skills
 claude plugin install docs@software-engineering-skills
 claude plugin install architecture@software-engineering-skills
+claude plugin install workflow@software-engineering-skills
 ```
 
 ### Gemini
@@ -129,6 +137,7 @@ gemini extensions link ./software-engineering-skills/plugins/frontend/
 gemini extensions link ./software-engineering-skills/plugins/devops/
 gemini extensions link ./software-engineering-skills/plugins/docs/
 gemini extensions link ./software-engineering-skills/plugins/architecture/
+gemini extensions link ./software-engineering-skills/plugins/workflow/
 ```
 
 ## Usage
@@ -267,6 +276,26 @@ Agents, commands and skills for software architecture design and documentation.
 | 🤖 Agents | `api-design-architect`, `architect-plan`, `architect-review`, `backend-architect`, `cloud-architect`, `event-sourcing-architect`, `graphql-architect`, `hybrid-cloud-architect`, `system-architecture-reviewer` |
 | ⚡ Commands | `/architecture-elaboration`, `/blueprint-generator`, `/c4-generator`, `/design-api`, `/haiku-doc-generator`, `/system-design` |
 | 🧰 Skills | `architecture-data-system-design`, `architecture-decision-records`, `architecture-designer`, `architecture-system-design`, `c4-generator`, `c4-model`, `cloud-architect`, `codebase-improve-architecture`, `event-store-design`, `event-stream-projection-patterns`, `microservices-architect`, `microservices-patterns`, `software-architecture-patterns` |
+
+---
+
+### `workflow` — Development Lifecycle Orchestration
+
+Skills to orchestrate the complete software development lifecycle — from raw idea to implementation. Compatible with any methodology (Scrum, Kanban, Shape Up) and applicable at any granularity: feature, story, or task.
+
+**0 agents** · **0 commands** · **4 skills**
+
+| Category | Items |
+|----------|-------|
+| 🧰 Skills | `workflow-explore-ideia`, `workflow-create-prd`, `workflow-prd-to-plan`, `workflow-implement` |
+
+Recommended flow:
+
+```
+Raw idea → workflow-explore-ideia → workflow-create-prd → workflow-prd-to-plan → workflow-implement
+```
+
+For detailed usage of each skill in any workflow, see the [Workflow Plugin README](plugins/workflow/README.md).
 
 ---
 

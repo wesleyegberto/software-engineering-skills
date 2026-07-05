@@ -346,8 +346,6 @@ If option 3, update `state.json` status to `"paused"` and stop.
 
 Read `.java-dev/01-requirements.md`, `.java-dev/02-codebase-analysis.md`, and `.java-dev/03-architecture.md`.
 
-Use `EnterWorktree` to create an isolated development branch before implementation begins.
-
 use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: ☕ Spring Boot Engineer`, `pane-name: ☕ engineer`, `output-file: .java-dev/04-implementation.md`
 
 Then launch the Spring Boot implementation agent:
@@ -355,7 +353,6 @@ Then launch the Spring Boot implementation agent:
 ```
 Agent:
   subagent_type: "java:java-spring-boot"
-  isolation: "worktree"
   description: "Implement Spring Boot feature: $FEATURE"
   prompt: |
     You are a senior Spring Boot engineer. Implement this feature based on the

@@ -12,3 +12,4 @@ claude plugin install node@software-engineering-skills
 claude plugin install python@software-engineering-skills
 claude plugin install frontend@software-engineering-skills
 claude plugin install devops@software-engineering-skills
+claude plugin install workflow@software-engineering-skills

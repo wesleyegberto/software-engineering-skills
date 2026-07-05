@@ -279,8 +279,6 @@ If option 3, update `state.json` status to `"paused"` and stop.
 
 Read `.react-dev/01-requirements.md` and `.react-dev/02-analysis.md`.
 
-Use `EnterWorktree` to create an isolated development branch before implementation begins. This protects the main branch during development.
-
 use skill `programming-skills:terminal-monitor` with: `mode: subagent`, `label: ⚛️ React Developer`, `pane-name: ⚛️ react`, `output-file: .react-dev/03-implementation.md`
 
 Then launch the React developer agent:
@@ -288,7 +286,6 @@ Then launch the React developer agent:
 ```
 Agent:
   subagent_type: "frontend:react-developer"
-  isolation: "worktree"
   description: "Implement React feature: $FEATURE"
   prompt: |
     You are a senior React developer. Implement this feature based on the approved

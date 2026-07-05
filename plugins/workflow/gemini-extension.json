@@ -1,0 +1,12 @@
+{
+  "name": "software-engineering-workflow",
+  "version": "1.0.0",
+  "author": "Wesley Egberto",
+  "repository": "https://github.com/wesleyegberto/software-engineering-skills",
+  "categories": [
+    "software-development"
+  ],
+  "languages": [
+    "programming"
+  ]
+}

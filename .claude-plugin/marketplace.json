@@ -36,6 +36,11 @@
       "name": "python",
       "description": "Collection of agents, commands and skills for software development in Python",
       "source": "./plugins/python/"
+    },
+    {
+      "name": "workflow",
+      "description": "Collection of skills for software development workflow compatible with any methodology",
+      "source": "./plugins/workflow/"
     }
   ]
 }

@@ -9,3 +9,4 @@ gemini extensions link ./plugins/frontend/
 gemini extensions link ./plugins/java/
 gemini extensions link ./plugins/node/
 gemini extensions link ./plugins/python/
+gemini extensions link ./plugins/workflow/
