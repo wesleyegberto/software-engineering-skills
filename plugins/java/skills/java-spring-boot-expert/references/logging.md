@@ -1,3 +1,8 @@
+---
+metadata:
+  author: https://github.com/Jeffallan
+---
+
 # Spring Logging
 
 Effective logging for Java applications with focus on structured, AI-parsable formats.

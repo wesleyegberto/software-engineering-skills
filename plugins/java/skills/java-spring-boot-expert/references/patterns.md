@@ -1,3 +1,8 @@
+---
+metadata:
+  author: https://github.com/Jeffallan
+---
+
 # Spring Boot Patterns - Caching, Async, Filters & Observability
 
 Complementary patterns for production-grade Spring Boot services. Load when implementing caching, async processing, request filters, rate limiting, scheduled jobs, or setting up observability.

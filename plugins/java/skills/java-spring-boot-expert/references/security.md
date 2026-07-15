@@ -1,3 +1,8 @@
+---
+metadata:
+  author: https://github.com/Jeffallan
+---
+
 # Security - Spring Security 6
 
 ## Security Configuration

@@ -53,6 +53,19 @@ Load detailed guidance based on context:
 | Testing | skill: `java-spring-boot-testing` | @SpringBootTest, MockMvc, Testcontainers, test slices |
 | Logging | `references/logging.md` | Patterns for logging in application, requests and setup |
 | Patterns | `references/patterns.md` | Caching, async processing, filters, rate limiting, scheduled jobs, observability, production defaults |
+| API Versioning | `references/api-versioning.md` | API versioning strategy, version negotiation, path/header/media-type versioning (Framework 7) |
+| Bean Registration | `references/bean-registration.md` | Programmatic bean registration, BeanRegistrar, conditional beans (Framework 7) |
+| HTTP Interface Clients | `references/http-interface-clients.md` | @HttpExchange, @ImportHttpServices, type-safe HTTP clients (Boot 4) |
+| Jackson 3 | `references/jackson-3.md` | Jackson 3 migration, @JsonView, JSON serialization, DTO sprawl reduction (Boot 4) |
+| JMS Client | `references/jms-client.md` | JmsClient fluent API, JMS messaging, queues, topics, request-reply (Framework 7) |
+| Mock vs REST Test | `references/mock-vs-rest.md` | MockMvcTester vs RestTestClient selection guide (Framework 7) |
+| Modular Auto-Config | `references/modular-auto-config.md` | Auto-configuration migration, modular config modules (Boot 4) |
+| Null Safety | `references/null-safety.md` | JSpecify, @NullMarked, @Nullable, compile-time null safety (Boot 4 / Framework 7) |
+| OpenTelemetry | `references/opentelemetry.md` | OpenTelemetry starter, tracing, OTLP exporter, auto-instrumentation (Boot 4) |
+| Resilience | `references/resilience.md` | @Retryable, @ConcurrencyLimit, retry with backoff, concurrency limiting (Framework 7) |
+| REST Test Client | `references/rest-test-client.md` | RestTestClient bind modes, integration testing across the pyramid (Framework 7) |
+| Spring Data AOT | `references/spring-data-aot.md` | AOT repositories, GraalVM native compilation, compile-time processing (Boot 4) |
+| Spring Security MFA | `references/spring-security-mfa.md` | MFA, TOTP, two-factor authentication, OTT (Security 7 / Boot 4) |
 
 ## Constraints
 
@@ -93,4 +106,4 @@ When implementing Spring Boot features, provide:
 
 ## Knowledge Reference
 
-Spring Boot 3.x, Spring Framework 6, Spring Data JPA, Spring Security 6, Spring Cloud, Project Reactor (WebFlux), JPA/Hibernate, Bean Validation, RestTemplate/WebClient, Actuator, Micrometer, JUnit 5, Mockito, Testcontainers, Docker, Kubernetes
+Spring Boot 3.x/4.x, Spring Framework 6/7, Spring Data JPA, Spring Security 6/7, Spring Cloud, Project Reactor (WebFlux), JPA/Hibernate, Bean Validation, RestTemplate/WebClient/HttpExchange, Actuator, Micrometer, OpenTelemetry, JUnit 5, Mockito, Testcontainers, Docker, Kubernetes, JSpecify, Jackson 3, GraalVM Native
