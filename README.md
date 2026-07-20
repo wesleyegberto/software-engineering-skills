@@ -140,6 +140,24 @@ gemini extensions link ./software-engineering-skills/plugins/architecture/
 gemini extensions link ./software-engineering-skills/plugins/workflow/
 ```
 
+### Antigravity
+
+```bash
+# Local path
+git clone https://github.com/wesleyegberto/software-engineering-skills.git
+
+# Install extensions
+agy plugin install ./software-engineering-skills/plugins/programming-skills/
+agy plugin install ./software-engineering-skills/plugins/java/
+agy plugin install ./software-engineering-skills/plugins/python/
+agy plugin install ./software-engineering-skills/plugins/node/
+agy plugin install ./software-engineering-skills/plugins/frontend/
+agy plugin install ./software-engineering-skills/plugins/devops/
+agy plugin install ./software-engineering-skills/plugins/docs/
+agy plugin install ./software-engineering-skills/plugins/architecture/
+agy plugin install ./software-engineering-skills/plugins/workflow/
+```
+
 ## Usage
 
 After installation, you can invoke agents, commands and skills directly in Claude Code:

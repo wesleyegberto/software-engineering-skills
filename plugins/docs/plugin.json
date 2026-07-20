@@ -1,0 +1,5 @@
+{
+    "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+    "name": "software-engineering-docs-skills",
+    "description": "Collection of agents, commands and skills for documentation"
+}
