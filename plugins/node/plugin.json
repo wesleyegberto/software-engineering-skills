@@ -1,5 +1,5 @@
 {
     "$schema": "https://antigravity.google/schemas/v1/plugin.json",
-    "name": "software-engineering-node-skills",
+    "name": "node",
     "description": "Collection of agents, commands and skills for software development in Node.js"
 }

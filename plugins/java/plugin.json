@@ -1,5 +1,5 @@
 {
     "$schema": "https://antigravity.google/schemas/v1/plugin.json",
-    "name": "software-engineering-java-skills",
+    "name": "java",
     "description": "Collection of agents, commands and skills for software development in Java with Spring Boot"
 }
